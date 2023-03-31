@@ -4,7 +4,7 @@ LabVIEW OOP library for handling command-line arguments.
 
 ## Requires
 
-- Python 3.9
+- [Python 3.9 (32-bit)](https://www.python.org/ftp/python/3.9.13/python-3.9.13-embed-win32.zip)
 
 ---
 
