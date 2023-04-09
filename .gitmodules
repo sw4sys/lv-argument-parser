@@ -2,3 +2,7 @@
 	path = PythonWrapper
 	url = git@github.com:sw4sys/lv-python-wrapper.git
 	branch = library
+[submodule "PathUtils"]
+	path = PathUtils
+	url = git@github.com:sw4sys/lv-path-utils.git
+	branch = library
