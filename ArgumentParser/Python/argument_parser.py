@@ -6,20 +6,23 @@ import importlib.util
 from pathlib import Path
 
 
-def load_parser(parser_path: str) -> argparse.ArgumentParser:
+parsers_bank: dict[str, argparse.ArgumentParser] = {}
+
+
+def load_parser(parser_path: str, parser_name: str):
     module_path = Path(parser_path)
     current_file_directory = Path(__file__).resolve().parent
     if not module_path.is_absolute():
         module_path = current_file_directory.joinpath(module_path)
-    spec = importlib.util.spec_from_file_location(module_path.stem, module_path)
+    spec = importlib.util.spec_from_file_location(module_path.stem, module_path)  # noqa: E501
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     func = getattr(module, 'parser')
-    return func()
+    parsers_bank.update({parser_name: func()})
 
 
 def parse_args(
-        parser: argparse.ArgumentParser,
+        parser_name: str,
         arguments: list[str]
         ):
     err = out = parsed = ''
@@ -28,7 +31,8 @@ def parse_args(
             redirect_stdout(StringIO()) as tmp_stdout
             ):
         try:
-            parsed = parser.parse_args(arguments)
+            global parsers_bank
+            parsed = parsers_bank.get(parser_name).parse_args(arguments)
             if parsed is not None:
                 parsed = json.dumps(vars(parsed))
             else:
@@ -45,8 +49,8 @@ def parse_args(
 if __name__ == '__main__':
     out = err = parsed = ''
 
-    parser = load_parser('parsers/example_parser.py')
-    parsed = parse_args(parser, 'echo -h'.split())
+    load_parser('parsers/example_parser.py', 'example_parser')
+    parsed = parse_args('example_parser', 'echo -h'.split())
 
     out = parsed[1]
     err = parsed[2]
