@@ -13,4 +13,5 @@
 	</Item>
 	<Item Name="ArgumentParser.lvclass" Type="LVClass" URL="../ArgumentParser/ArgumentParser.lvclass"/>
 	<Item Name="Example.vi" Type="VI" URL="../Example.vi"/>
+	<Item Name="ParsedData.lvclass" Type="LVClass" URL="../ParsedData/ParsedData.lvclass"/>
 </Library>
