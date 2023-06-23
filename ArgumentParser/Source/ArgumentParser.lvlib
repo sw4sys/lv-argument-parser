@@ -12,6 +12,6 @@
 		<Item Name="ArgparseWrapper.lvclass" Type="LVClass" URL="../ArgparseWrapper/ArgparseWrapper.lvclass"/>
 	</Item>
 	<Item Name="ArgumentParser.lvclass" Type="LVClass" URL="../ArgumentParser/ArgumentParser.lvclass"/>
-	<Item Name="Example.vi" Type="VI" URL="../Example.vi"/>
 	<Item Name="ParsedData.lvclass" Type="LVClass" URL="../ParsedData/ParsedData.lvclass"/>
+	<Item Name="Example.vi" Type="VI" URL="../Example.vi"/>
 </Library>
